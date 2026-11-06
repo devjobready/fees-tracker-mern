@@ -1,4 +1,4 @@
-const B = '/api/students', H = { 'Content-Type': 'application/json' };
+const B = (import.meta.env.VITE_API_URL || '') + '/api/students', H = { 'Content-Type': 'application/json' };
 const j = async r => { if (!r.ok) throw new Error((await r.json().catch(() => ({}))).message || 'Request failed'); return r.json(); };
 const send = (url, method, body) => fetch(url, { method, headers: H, body: body && JSON.stringify(body) }).then(j);
 export const api = {
